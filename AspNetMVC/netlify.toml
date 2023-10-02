@@ -1,0 +1,4 @@
+[build]
+command = "dotnet publish"
+publish = "bin/Release/netcoreapp3.1/publish/"
+"

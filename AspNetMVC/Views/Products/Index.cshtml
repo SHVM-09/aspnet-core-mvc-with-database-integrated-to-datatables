@@ -1,0 +1,79 @@
+@model IEnumerable<AspNetMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>DataTable with ASPNET MVC connected with Database</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Entry</a>
+</p>
+<table id="example" class="display mt-5" style="width:100%">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ExpiryDate)
+            </th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="text-center text-success">
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            <td class="text-center">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-success">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+      $(document).ready(function () {
+    var table = $('#example').DataTable();
+
+     // Style the DataTable wrapper
+    $('.dataTables_wrapper')
+        .css('padding', '20px')
+        .css('border', '2px solid #ccc');
+    
+    // Style pagination links
+    $('.dataTables_paginate a')
+        .css('padding', '5px 10px')
+        .css('margin', '0 3px')
+        .css('border', '1px solid #ccc')
+        .css('border-radius', '4px')
+        .css('text-decoration', 'none')
+        .css('background-color', '#f2f2f2')
+        .css('color', '#333');
+    
+    // Hover effect for pagination links
+    $('.dataTables_paginate a').hover(function () {
+        $(this).css('background-color', '#666');
+        $(this).css('color', '#fff');
+    }, function () {
+        $(this).css('background-color', '#f2f2f2');
+        $(this).css('color', '#333');
+    });
+});
+    </script>
+}
